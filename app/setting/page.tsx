@@ -29,9 +29,10 @@ export default function setting() {
     console.log(jwtToken);
   }, [cookies]);
 
-  const headers = {
-    Authorization: `Bearer ${jwtToken}`,
-    'Content-Type': 'multipart/form-data',
+    const headers = {
+      // cookies: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk0NSIsInVzZXJuYW1lIjoibWVncmlzc2UiLCJpYXQiOjE2OTk2NjMwMzcsImV4cCI6MTY5OTY2NjYzN30.FMtQLXxP3iy0W-h1EwG0uRlg43lo4k6U7Ao_Al3fftw`,
+      // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk0NSIsInVzZXJuYW1lIjoibWVncmlzc2UiLCJpYXQiOjE2OTk2NjM4MTQsImV4cCI6MTY5OTY2NzQxNH0.79HkZgofGS4I9rlSvwInXylYljS4jfbLo0DMqm9oabY`,
+      // 'Content-Type': 'multipart/form-data',
   };
 
   // const jwt = cookieStore.get('jwt');
@@ -91,9 +92,9 @@ export default function setting() {
 
   const handleFormDataSubmit = async () => {
     try {
-      const response = await axios.post('http://10.11.3.8:5000/Settings/username', formData, { headers });
+      const response = await axios.post('http://localhost:5000/Settings/username', formData, { headers, withCredentials: true });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         console.log('Data submitted successfully:', response.data);
       } else {
         console.error('Data submission failed:', response.data);
