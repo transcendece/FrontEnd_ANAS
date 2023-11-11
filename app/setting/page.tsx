@@ -108,6 +108,7 @@ export default function setting() {
 
       if (response.status === 201) {
         console.log('Data submitted successfully:', response.data);
+        // console.log(response.data);
       } else {
         console.error('Data submission failed:', response.data);
       }
@@ -169,11 +170,9 @@ export default function setting() {
                       </div>
                   </div>
                   {/* <button type="submit" className="xMedium:h-[5rem] py-6 Large:h-24 h-16 w-[400px] mx-auto  xMedium:min-w-[500px] border-x-2 border-[#E58E27] rounded-3xl bg-[#323232] text-slate-100 text-xl xMedium:text-2xl hover:bg-[#E58E27] hover:opacity-80 transition duration-700">SAVE</button> */}
-                  <button data-modal-target="timeline-modal" data-modal-toggle="timeline-modal" className="block py-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5  text-center" type="button">
-  Validate
-</button>
+                  <button type="submit" data-modal-target="timeline-modal" data-modal-toggle="timeline-modal" className="block py-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5  text-center">Validate</button>
 {/* Pop-up */}
-<div id="timeline-modal"  aria-hidden="true" className={`${hidden_} overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}>
+<div id="timeline-modal"  aria-hidden="true" className={`hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}>
     <div className="top-[30%] left-[40%] relative p-4 w-full max-w-md max-h-full">
         <div className="relative bg-white bg-opacity-20 rounded-lg shadow">
                 <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
@@ -182,7 +181,7 @@ export default function setting() {
                     </h3>
                     <button onClick={onCloseClick} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="timeline-modal">
                         <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            <path stroke="currentColor" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
                         </svg>
                         <span className="sr-only">Close modal</span>
                     </button>
