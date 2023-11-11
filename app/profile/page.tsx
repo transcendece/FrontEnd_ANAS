@@ -16,25 +16,14 @@ export default function Pra() {
   const dataUser = useSelector((state: RootState) => state.user.user_Data?.userData);
 
   console.log("================");
-  console.log(matchHIst);
+  // console.log(matchHIst);
+  // console.log(dataUser);
 
   
   console.log("================");
   // const status = useSelector((state: any) => state.user.status);
   // const error = useSelector((state: any) => state.user.error);
-  let status = 'none';
-  // console.log("tessssssst");
-  // console.log(user.name);
-  
 
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    if (status === 'none'){
-      dispatch(fetchInfos());
-    }
-
-  }, [])
 
   // localStorage.setItem('user', JSON.stringify({ name: 'anas jaidi', userName: ' mqwed khou anas', rank: 1000000000, level: 100000 }))
   // const [data, setData] = useState(null)

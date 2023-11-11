@@ -5,31 +5,52 @@ import Image from "next/image"
 import { FiEdit2 } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { useCookies } from 'react-cookie';
+import { useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
+import { useDispatch } from "react-redux";
+import { fetchInfos } from "../Slices/userSlice";
+
 
 export default function setting() {
 
 
+  const dispatch = useDispatch<AppDispatch>();
   const [cookies, setCookie] = useCookies(['jwt-token']);
   const [tfaEnabled, setTfaEnabled] = useState<boolean>(true);
   const [jwtToken, setJwtToken] = useState<string | undefined>(cookies["jwt-token"]);
   const [hideIt, setHideIt] = useState<string>("hidden");
-  // console.log('++++++++++');
-  // console.log({cookies});
-  // console.log('++++++++++');
+  const checkedTFA = useSelector((state: RootState) => state.user?.user_Data?.userData?.IsEnabled);
   const [imageD, setImageD] = useState<File | null>(null);
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     checked_: false,
   });
-
+  
+  // console.log(checkedTFA);
+  // console.log("tessssssst");
+  
+  
   useEffect(() => {
     const jwtValue = cookies["jwt-token"];
+    console.log(formData.checked_);
 
     console.log('jwt-token:', jwtValue);
     setJwtToken(jwtValue);
     console.log(jwtToken);
+    let status = 'none';
+    if (status === 'none'){
+      dispatch(fetchInfos());
+    }
   }, [cookies]);
+
+  // console.log(user.name);
+  
+
+
+  // useEffect(() => {
+
+  // }, [])
 
     const headers = {
       // cookies: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ODk0NSIsInVzZXJuYW1lIjoibWVncmlzc2UiLCJpYXQiOjE2OTk2NjMwMzcsImV4cCI6MTY5OTY2NjYzN30.FMtQLXxP3iy0W-h1EwG0uRlg43lo4k6U7Ao_Al3fftw`,

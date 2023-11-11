@@ -8,7 +8,7 @@ export default function Game() {
             <div className=""><Navbar pageName="Game"/></div>
             <div className="border h-[87%] m-2 ">
               <div>
-                <MatchHist/>
+                {/* <MatchHist/> */}
               </div>
             </div>
           </div>
