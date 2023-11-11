@@ -30,11 +30,8 @@ export default function setting() {
   // console.log(checkedTFA);
   // console.log("tessssssst");
   
-  
   useEffect(() => {
     const jwtValue = cookies["jwt-token"];
-    console.log(formData.checked_);
-
     console.log('jwt-token:', jwtValue);
     setJwtToken(jwtValue);
     console.log(jwtToken);
@@ -42,6 +39,10 @@ export default function setting() {
     if (status === 'none'){
       dispatch(fetchInfos());
     }
+    setFormData((prevData) => ({
+      ...prevData,
+      checked_: checkedTFA,
+    }));
   }, [cookies]);
 
   // console.log(user.name);
