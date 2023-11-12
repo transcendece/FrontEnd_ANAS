@@ -21,7 +21,7 @@ export interface userState {
 //   user_Data: {
 //     id: 0,
 //     name: '',
-//     userName: '',
+//     userName: '',http://localhost:3000/_next/image?url=%2Fgsus.jpeg&w=640&q=75
 //     rank: 0,
 //     level: 0,
 //     avatar: '',
@@ -55,7 +55,7 @@ const initialState = {
 } as any;
 
 export const fetchInfos = createAsyncThunk("user/fetch", async (thunkApi) => {
-  const response = await fetch ("http://localhost:5000/Profile/98945", {
+  const response = await fetch("http://localhost:5000/Profile/98945", {
     method: "GET"
   });
 

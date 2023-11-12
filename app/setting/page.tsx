@@ -24,11 +24,17 @@ export default function setting() {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    checked_: false,
+    checked_: true,
   });
   
   // console.log(checkedTFA);
   // console.log("tessssssst");
+
+  const db = () => {
+    return {
+      
+    }
+  }
   
   useEffect(() => {
     const jwtValue = cookies["jwt-token"];
@@ -36,10 +42,10 @@ export default function setting() {
     setJwtToken(jwtValue);
     console.log(jwtToken);
     dispatch(fetchInfos());
-    setFormData((prevData) => ({
-      ...prevData,
-      checked_: checkedTFA || false,
-    }));
+    // setFormData((prevData) => ({
+    //   ...prevData,
+    //   checked_: false,
+    // }));
   }, [cookies]);
 
   // console.log(user.name);
@@ -87,9 +93,9 @@ export default function setting() {
   }
   
   const handleClickToggle = () => {
-    console.log('Clicked');
-    setTfaEnabled(!tfaEnabled);
-    console.log(tfaEnabled);
+    // console.log('Clicked');
+    // setTfaEnabled(!tfaEnabled);
+    // console.log(tfaEnabled);
     // console.log('====== ');
     // console.log(tfaEnabled);
     // console.log('====== ');
@@ -180,7 +186,7 @@ export default function setting() {
                       <div className="m-auto w-[160px] bg-[#323232]">
                         <button onClick={handleClickToggle} className="">
                           <label htmlFor="toggleCheck" data-modal-target="timeline-modal" data-modal-toggle="timeline-modal" className="w-[180px] h-20">
-                          <input onChange={handleChange} type="checkbox" id="toogleCheck" name="checked_" checked={checkedTFA ? !formData.checked_ : formData.checked_} className="h-8 rounded-full appearance-none w-16 bg-slate-500 opacity-80 checked:bg-slate-200 transition duration-300 relative" />
+                          <input onChange={handleChange} type="checkbox" id="toogleCheck" name="checked_" checked={formData.checked_} className="h-8 rounded-full appearance-none w-16 bg-slate-500 opacity-80 checked:bg-slate-200 transition duration-300 relative" />
 
                             {/* <button  id="toogleCheck" name="checked_"  className="h-8 rounded-full appearance-none w-16 bg-slate-500 opacity-80 checked:bg-slate-200 transition duration-300 relative" onClick={handletfaClick }/> */}
                             {/* <span className="w-5 h-5 bg-red-400 rounded-full absolute top-1 left-1"></span>
