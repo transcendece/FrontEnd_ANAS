@@ -35,13 +35,10 @@ export default function setting() {
     console.log('jwt-token:', jwtValue);
     setJwtToken(jwtValue);
     console.log(jwtToken);
-    let status = 'none';
-    if (status === 'none'){
-      dispatch(fetchInfos());
-    }
+    dispatch(fetchInfos());
     setFormData((prevData) => ({
       ...prevData,
-      checked_: checkedTFA,
+      checked_: checkedTFA || false,
     }));
   }, [cookies]);
 
@@ -148,7 +145,8 @@ export default function setting() {
   }
 
   const onCloseClick = () => {
-    setTfaEnabled(!tfaEnabled);
+    console.log("close Click");
+    // setTfaEnabled(!tfaEnabled);
   }
 
   const hidden_ = !tfaEnabled ? '' : 'hidden';
@@ -182,7 +180,7 @@ export default function setting() {
                       <div className="m-auto w-[160px] bg-[#323232]">
                         <button onClick={handleClickToggle} className="">
                           <label htmlFor="toggleCheck" data-modal-target="timeline-modal" data-modal-toggle="timeline-modal" className="w-[180px] h-20">
-                          <input onChange={handleChange} type="checkbox" id="toogleCheck" name="checked_" checked={formData.checked_} className="h-8 rounded-full appearance-none w-16 bg-slate-500 opacity-80 checked:bg-slate-200 transition duration-300 relative" />
+                          <input onChange={handleChange} type="checkbox" id="toogleCheck" name="checked_" checked={checkedTFA ? !formData.checked_ : formData.checked_} className="h-8 rounded-full appearance-none w-16 bg-slate-500 opacity-80 checked:bg-slate-200 transition duration-300 relative" />
 
                             {/* <button  id="toogleCheck" name="checked_"  className="h-8 rounded-full appearance-none w-16 bg-slate-500 opacity-80 checked:bg-slate-200 transition duration-300 relative" onClick={handletfaClick }/> */}
                             {/* <span className="w-5 h-5 bg-red-400 rounded-full absolute top-1 left-1"></span>
