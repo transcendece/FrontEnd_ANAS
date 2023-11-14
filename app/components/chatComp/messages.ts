@@ -7,18 +7,67 @@ export const messages:Message[] = [
       "isChatOwner": true
     },
     {
-      "text": "Hey, devlazar!",
+      "text": "Hey, friend!",
       "sentBy": "anon",
       "isChatOwner": false
     },
     {
-      "text": "Do you like this chat?",
+      "text": "message Like a Message OMG",
       "sentBy": "owner",
       "isChatOwner": true
     },
     {
-      "text": "Looks nice!",
+      "text": "Hay Hay Hay!",
       "sentBy": "anon",
       "isChatOwner": false
-    }
+    },
+    {
+      "text": "Hey!",
+      "sentBy": "owner",
+      "isChatOwner": true
+    },
+    {
+      "text": "Hey, friend!",
+      "sentBy": "anon",
+      "isChatOwner": false
+    },
+    {
+      "text": "message Like a Message OMG",
+      "sentBy": "owner",
+      "isChatOwner": true
+    },
+    {
+      "text": "Hey!",
+      "sentBy": "owner",
+      "isChatOwner": true
+    },
+    {
+      "text": "Hey, friend!",
+      "sentBy": "anon",
+      "isChatOwner": false
+    },
+    {
+      "text": "message Like a Message OMG",
+      "sentBy": "owner",
+      "isChatOwner": true
+    },
+    {
+      "text": "message Like a Message OMG",
+      "sentBy": "owner",
+      "isChatOwner": true
+    },
+    {
+      "text": "message Like a Message OMG",
+      "sentBy": "owner",
+      "isChatOwner": true
+    },
+    {
+      "text": "message Like a Message OMG",
+      "sentBy": "owner",
+      "isChatOwner": true
+    },{
+      "text": "message Like a Message OMG",
+      "sentBy": "owner",
+      "isChatOwner": true
+    },
   ]

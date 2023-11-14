@@ -2,18 +2,21 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar"
 import ChatHeader from "@/app/components/chatComp/chatHeader"
+import ChatContent from "../components/chatComp/chatContent";
 import { messages } from "../components/chatComp/messages";
 
 export interface Message {
   text: string;
   sentBy: string;
-  isChatOwner?: boolean;
+  isChatOwner: boolean;
 }
 
 export default function chat() {
 
-
-  const [messages, setMessages] = useState<Message[]>([]);
+  
+  
+  const [allMessages, setAllMessages] = useState<Message[]>(messages);
+  console.log(allMessages);
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -41,6 +44,7 @@ export default function chat() {
                 </div>
                 <div className="w-[60%] h-full bg-[#323232] rounded-xl">
                   <ChatHeader name="Nems"/>
+                  <ChatContent messages={allMessages}/>
                 </div>
               </div>
             </div>
