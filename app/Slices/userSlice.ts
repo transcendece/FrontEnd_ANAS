@@ -55,10 +55,10 @@ const initialState = {
 } as any;
 
 export const fetchInfos = createAsyncThunk("user/fetch", async (thunkApi) => {
-  const response = await fetch("http://localhost:5000/Profile/98945", {
-    method: "GET"
+  const response = await fetch("http://localhost:5000/Profile", {
+    method: "GET",
+    credentials: 'include',
   });
-
   
   const data = await response.json();   
   // console.log(data);
