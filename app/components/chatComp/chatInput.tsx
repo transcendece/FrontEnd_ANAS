@@ -11,9 +11,11 @@ export interface chatInputProps {
 
 function ChatInput({onSendMessage}: chatInputProps) {
   const [message, setMessage] = useState<string>('');
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
+
   const handleSendMessage = () => {
     if (message.trim() !== '') {
       socket.emit('SendMessage', {
@@ -27,17 +29,13 @@ function ChatInput({onSendMessage}: chatInputProps) {
     }
   };
 
-  useEffect(() => {
-    // const socket = io('http://localhost:5000', {transports : ["websocket"]})
-
-  }, [])
   return (
     <div className='w-full h-20 flex justify-center items-center m-auto border-t border-t-[#E58E27]'>
       <input
         type="text"
         value={message}
         onChange={handleInputChange}
-        placeholder="Type your message..."
+        placeholder="Send a message ..."
         className="w-[90%] h-[50%] text-[#323232] p-2 border rounded outline-none focus:border-[#E58E27]"
       />
       <button

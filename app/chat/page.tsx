@@ -22,17 +22,40 @@ export interface Conversation {
 export default function chat() {
 
   
-  const [selectedConversation, setSelectedConversation] = useState<Conversation [] | null>(conversations);
-  const [allMessages, setAllMessages] = useState<Message[]>(selectedConversation.messages || null);
+  const [selectedConv, setSelectedConv] = useState<Conversation [] >(conversations);
+  const [allMessages, setAllMessages] = useState<Message[]>(selectedConv[0].messages);
+
+  const [selectConvId, setSelectConvId] = useState<number>(1);
+
   console.log(allMessages);
   const handleSendMessage = (newMessage: string) => {
-    const newChatMessage: Message = {
-      avatar:"",
-      text: newMessage,
-      sentBy: 'owner',
-      isChatOwner: true,
-    };
-    setAllMessages((prevMessages) => [...prevMessages, newChatMessage]);
+    if (selectConvId !== null) {
+      const updatedConversations = selectedConv.map((conversation) =>
+        conversation.id === selectConvId
+          ? {
+              ...conversation,
+              messages: [
+                ...conversation.messages,
+                {
+                  avatar: '',
+                  text: newMessage,
+                  sentBy: 'owner',
+                  isChatOwner: true,
+                },
+              ],
+            }
+          : conversation
+      );
+
+      setSelectedConv(updatedConversations);
+    // const newChatMessage: Message = {
+    //   avatar:"",
+    //   text: newMessage,
+    //   sentBy: 'owner',
+    //   isChatOwner: true,
+    // };
+    // setAllMessages((prevMessages) => [...prevMessages, newChatMessage]);
+    }
   }
 
 
@@ -58,11 +81,21 @@ export default function chat() {
             <div className=" w-[90%] h-[87%] m-auto">
               <div className="w-full h-full flex justify-between items-center ">
                 <div className="w-[35%] h-full bg-[#323232] rounded-xl">
-                
+                {selectedConv.map((conversation) => (
+                    <div className="h-20">
+                      <button
+                      key={conversation.id}
+                      onClick={() => setSelectConvId(conversation.id)}
+                      className=""
+                      >{conversation.title}
+                      </button>
+                    </div>
+                  ))}
+
                 </div>
                 <div className="w-[60%] h-full bg-[#323232] rounded-xl">
                   <ChatHeader name="Nems"/>
-                  <ChatContent messages={allMessages}/>
+                  <ChatContent messages={selectedConv.find((conversation) => conversation.id === selectConvId)?.messages || []}/>
                   <ChatInput onSendMessage={handleSendMessage}/>
                 </div>
               </div>
