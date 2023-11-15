@@ -1,73 +1,58 @@
-import { Message } from "@/app/chat/page"
+import { Conversation, Message } from "@/app/chat/page"
 
 export const messages:Message[] = [
     {
+      "avatar": "path/to/hight",
       "text": "Hey!",
       "sentBy": "owner",
       "isChatOwner": true
     },
     {
+      "avatar": "path/to/hight",
+
       "text": "Hey, friend!",
       "sentBy": "anon",
       "isChatOwner": false
     },
+  ]
+
+  export const conversations:Conversation[] = [
     {
-      "text": "message Like a Message OMG",
-      "sentBy": "owner",
-      "isChatOwner": true
+      "id": 13,
+      "title": "title1",
+      "messages": [
+        {
+          "avatar": "path/to/hight",
+          "text": "Hey!",
+          "sentBy": "owner",
+          "isChatOwner": true
+        },
+        {
+          "avatar": "path/to/hight",
+    
+          "text": "Hey, friend!",
+          "sentBy": "anon",
+          "isChatOwner": false
+        },
+      ]
     },
     {
-      "text": "Hay Hay Hay!",
-      "sentBy": "anon",
-      "isChatOwner": false
-    },
-    {
-      "text": "Hey!",
-      "sentBy": "owner",
-      "isChatOwner": true
-    },
-    {
-      "text": "Hey, friend!",
-      "sentBy": "anon",
-      "isChatOwner": false
-    },
-    {
-      "text": "message Like a Message OMG",
-      "sentBy": "owner",
-      "isChatOwner": true
-    },
-    {
-      "text": "Hey!",
-      "sentBy": "owner",
-      "isChatOwner": true
-    },
-    {
-      "text": "Hey, friend!",
-      "sentBy": "anon",
-      "isChatOwner": false
-    },
-    {
-      "text": "message Like a Message OMG",
-      "sentBy": "owner",
-      "isChatOwner": true
-    },
-    {
-      "text": "message Like a Message OMG",
-      "sentBy": "owner",
-      "isChatOwner": true
-    },
-    {
-      "text": "message Like a Message OMG",
-      "sentBy": "owner",
-      "isChatOwner": true
-    },
-    {
-      "text": "message Like a Message OMG",
-      "sentBy": "owner",
-      "isChatOwner": true
-    },{
-      "text": "message Like a Message OMG",
-      "sentBy": "owner",
-      "isChatOwner": true
-    },
+      "id": 11,
+      "title": "title2",
+      "messages": [
+        {
+          "avatar": "path/to/hight",
+          "text": "wech wechh!",
+          "sentBy": "Farid",
+          "isChatOwner": true
+        },
+        {
+          "avatar": "path/to/hight",
+    
+          "text": "Hey, famila!",
+          "sentBy": "doudou",
+          "isChatOwner": false
+        },
+      ]
+    }
   ]

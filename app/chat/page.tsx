@@ -3,20 +3,38 @@ import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar"
 import ChatHeader from "@/app/components/chatComp/chatHeader"
 import ChatContent from "../components/chatComp/chatContent";
-import { messages } from "../components/chatComp/messages";
+import { messages, conversations } from "../components/chatComp/messages";
+import ChatInput from "../components/chatComp/chatInput";
 
 export interface Message {
+  avatar: string,
   text: string;
   sentBy: string;
   isChatOwner: boolean;
 }
 
+export interface Conversation {
+  id: number;
+  title: string;
+  messages: Message[];
+}
+
 export default function chat() {
 
   
-  
-  const [allMessages, setAllMessages] = useState<Message[]>(messages);
+  const [selectedConversation, setSelectedConversation] = useState<Conversation [] | null>(conversations);
+  const [allMessages, setAllMessages] = useState<Message[]>(selectedConversation.messages || null);
   console.log(allMessages);
+  const handleSendMessage = (newMessage: string) => {
+    const newChatMessage: Message = {
+      avatar:"",
+      text: newMessage,
+      sentBy: 'owner',
+      isChatOwner: true,
+    };
+    setAllMessages((prevMessages) => [...prevMessages, newChatMessage]);
+  }
+
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -45,6 +63,7 @@ export default function chat() {
                 <div className="w-[60%] h-full bg-[#323232] rounded-xl">
                   <ChatHeader name="Nems"/>
                   <ChatContent messages={allMessages}/>
+                  <ChatInput onSendMessage={handleSendMessage}/>
                 </div>
               </div>
             </div>
