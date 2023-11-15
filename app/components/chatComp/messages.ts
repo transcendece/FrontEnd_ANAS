@@ -18,18 +18,17 @@ export const messages:Message[] = [
 
   export const conversations:Conversation[] = [
     {
-      "id": 13,
-      "title": "title1",
+      "id": 1,
+      "title": "chat1",
       "messages": [
         {
-          "avatar": "path/to/hight",
+          "avatar": "path",
           "text": "Hey!",
           "sentBy": "owner",
           "isChatOwner": true
         },
         {
-          "avatar": "path/to/hight",
-    
+          "avatar": "path",
           "text": "Hey, friend!",
           "sentBy": "anon",
           "isChatOwner": false
@@ -37,17 +36,17 @@ export const messages:Message[] = [
       ]
     },
     {
-      "id": 11,
-      "title": "title2",
+      "id": 2,
+      "title": "chat2",
       "messages": [
         {
-          "avatar": "path/to/hight",
+          "avatar": "path",
           "text": "wech wechh!",
           "sentBy": "Farid",
           "isChatOwner": true
         },
         {
-          "avatar": "path/to/hight",
+          "avatar": "path",
     
           "text": "Hey, famila!",
           "sentBy": "doudou",

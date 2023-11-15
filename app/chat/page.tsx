@@ -5,6 +5,7 @@ import ChatHeader from "@/app/components/chatComp/chatHeader"
 import ChatContent from "../components/chatComp/chatContent";
 import { messages, conversations } from "../components/chatComp/messages";
 import ChatInput from "../components/chatComp/chatInput";
+import ConversComp from "../components/chatComp/conversComp";
 
 export interface Message {
   avatar: string,
@@ -80,18 +81,23 @@ export default function chat() {
             <div className=""><Navbar pageName="chat"/></div>
             <div className=" w-[90%] h-[87%] m-auto">
               <div className="w-full h-full flex justify-between items-center ">
-                <div className="w-[35%] h-full bg-[#323232] rounded-xl">
-                {selectedConv.map((conversation) => (
-                    <div className="h-20">
-                      <button
-                      key={conversation.id}
-                      onClick={() => setSelectConvId(conversation.id)}
-                      className=""
-                      >{conversation.title}
-                      </button>
-                    </div>
-                  ))}
+                <div className="flex flex-col bg-[#323232] h-full w-[30%] rounded-xl">
+                  <div className="h-20 border-b border-b-[#E58E27]">Header</div>
+                  <div className="h-full w-full bg-[#323232] rounded-xl">
+                      {selectedConv.map((conversation) => (
+                        <div className="h-20 w-full bg-opacity-20 bg-white shadow-sm shadow-white">
+                          <button
+                          key={conversation.id}
+                          onClick={() => setSelectConvId(conversation.id)}
+                          className="w-full h-full bg-white bg-opacity-10"
+                          ><ConversComp conversation={conversation}/>
+                          </button>
+                        </div>
+                      ))}
 
+                  </div>
+
+                  
                 </div>
                 <div className="w-[60%] h-full bg-[#323232] rounded-xl">
                   <ChatHeader name="Nems"/>
