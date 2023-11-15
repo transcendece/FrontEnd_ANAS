@@ -18,11 +18,11 @@ function ConversComp({conversation}: chatConversProps) {
         <div className='flex '>
             <div className='w-16'>{avatar}</div>
             <div className='w-32 h-12 flex items-start justify-start flex-col'>
-                <div className='flex-none'>{sender}</div>
+                <div className=' text-[#131313]'>{sender}</div>
                 <div className='max-w-[200px] truncate'>{content}</div>
             </div>
         </div>
-        <div>online</div>
+        <div className={`${conversation.status ? "text-green-500" : "text-red-500"}`}>status</div>
     </div>
   )
 }

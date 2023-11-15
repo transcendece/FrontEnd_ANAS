@@ -1,7 +1,7 @@
 import React from 'react'
 import { Message } from '@/app/chat/page';
 import { useRef, useEffect } from 'react';
-import { socket } from './socket';
+// import { socket } from './socket';
 
 interface ChatContentProps {
     messages: Message[];
@@ -9,11 +9,11 @@ interface ChatContentProps {
 
 function ChatContent({messages}: ChatContentProps) {
   useEffect (() => {
-    socket.on('chatMessage', (newMessage: Message) => {
-    });
+    // socket.on('chatMessage', (newMessage: Message) => {
+    // });
 
     return () => {
-      socket.off('chatMessage');
+      // socket.off('chatMessage');
     };
 
   }, [messages])

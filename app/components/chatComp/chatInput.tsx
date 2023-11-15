@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { RiSendPlane2Fill } from "react-icons/ri";
-import { socket } from './socket';
+// import { socket } from './socket';
 import { io } from 'socket.io-client';
 
 export interface chatInputProps {
@@ -18,12 +18,12 @@ function ChatInput({onSendMessage}: chatInputProps) {
 
   const handleSendMessage = () => {
     if (message.trim() !== '') {
-      socket.emit('SendMessage', {
-        "content" : message,
-        "senderId" : "gadgda",
-        "recieverId" : "afdfad",
-        "conversationId" : ""
-      });
+      // socket.emit('SendMessage', {
+      //   "content" : message,
+      //   "senderId" : "gadgda",
+      //   "recieverId" : "afdfad",
+      //   "conversationId" : ""
+      // });
       onSendMessage(message);
       setMessage('');
     }
