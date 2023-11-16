@@ -14,6 +14,7 @@ export interface Conversation {
   username: string;
   avatar: string;
   owner:string
+  timestamp?: number;
   messages: Message[];
 }
 

@@ -28,6 +28,7 @@ export interface Conversation {
   username: string;
   avatar: string;
   owner:string
+  timestamp?: number;
   messages: Message[];
 }
 
@@ -54,10 +55,12 @@ export default function chat() {
   // console.log(allMessages);
   const handleSendMessage = (newMessage: string) => {
     if (selectConvId !== null) {
+      const timestamp = Date.now();
       const updatedConversations = selectedConv.map((conversation: any) =>
         conversation.id === selectConvId
           ? {
               ...conversation,
+              timestamp: timestamp,
               messages: [
                 ...conversation.messages,
                 {
@@ -83,6 +86,12 @@ export default function chat() {
     }
   }
 
+  const sortedConversations = selectedConv.slice().sort((a, b) => {
+    const timestampA = a.timestamp || 0;
+    const timestampB = b.timestamp || 0;
+    return timestampB - timestampA;
+  });
+
   return (
           <div className="flex flex-col text-slate-100 h-screen w-full">
             <div className=""><Navbar pageName="chat"/></div>
@@ -91,7 +100,7 @@ export default function chat() {
                 <div className="flex flex-col  h-full w-[30%] rounded-xl">
                   <div className="h-20 py-3 border-b rounded-lg bg-[#323232] border-b-[#E58E27]">Header</div>
                   <div className="h-[95] w-full  overflow-y-auto scrollbar-hide rounded-xl">
-                      {selectedConv.map((conversation: Conversation) => (
+                      {sortedConversations.map((conversation: Conversation) => (
                         <div key={conversation.id} className="h-20 w-full bg-opacity-20 bg-white shadow-sm shadow-white">
                           <button
                           
@@ -107,7 +116,7 @@ export default function chat() {
                 <div className="w-[60%] h-full bg-[#323232] rounded-xl">
                   <ChatHeader name="Nems"/>
                   <ChatContent messages={selectedConv.find((conversation) => conversation.id === selectConvId)?.messages || []}/>
-                  <ChatInput onSendMessage={handleSendMessage} conversation={selectedConv.find((conversation) => conversation.id === selectConvId)}/>
+                  <ChatInput onSendMessage={handleSendMessage} conversation={sortedConversations.find((conversation) => conversation.id === selectConvId)}/>
                 </div>
               </div>
             </div>

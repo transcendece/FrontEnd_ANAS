@@ -19,7 +19,7 @@ function ChatInput({onSendMessage, conversation}: chatInputProps) {
     setMessage(event.target.value);
   };
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = () => {
     if (message.trim() !== '') {
       socket.emit('SendMessage', {
         "content" : message,
@@ -28,18 +28,7 @@ function ChatInput({onSendMessage, conversation}: chatInputProps) {
       });
       onSendMessage(message);
       setMessage('');
-      try {
-        const response = await axios.get('http://localhost:5000/Chat/98861');
-  
-        if (response.status === 200) {
-          console.log('Data getted successfully:', response.data);
-          console.log(response.data);
-        } else {
-          console.error('Data getting failed:', response.data);
-        }
-      } catch (error) {
-        console.error('Error gettng data:', error);
-      }
+      
     }
   };
 
