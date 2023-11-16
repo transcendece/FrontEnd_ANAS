@@ -3,49 +3,73 @@ import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar"
 import ChatHeader from "@/app/components/chatComp/chatHeader"
 import ChatContent from "../components/chatComp/chatContent";
-import { messages, conversations } from "../components/chatComp/messages";
+// import { messages, conversations } from "../components/chatComp/messages";
 import ChatInput from "../components/chatComp/chatInput";
 import ConversComp from "../components/chatComp/conversComp";
 import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { RootState, AppDispatch } from "../store/store";
+import store from "../store/store";
+import { useDispatch } from "react-redux";
+import { fetchChatData } from "../Slices/chatSlice";
+import { useCookies } from 'react-cookie';
 
 export interface Message {
   avatar: string,
-  text: string;
-  sentBy: string;
-  isChatOwner: boolean;
+  content: string;
+  sender: string;
+  owner: boolean;
 }
 
 export interface Conversation {
   id: number;
-  status: boolean;
+  online: boolean;
+  username: string;
+  avatar: string;
   messages: Message[];
 }
 
 export default function chat() {
+  const dispatch = useDispatch<AppDispatch>();
+  const conversations: Conversation[] = useSelector((state: RootState) => state.chat?.entity);
+  const [selectedConv, setSelectedConv] = useState<Conversation[]>(conversations);
+
+  useEffect(() => {
+    console.log("test")
+    console.log('Dispatching fetchChatData...');
+    dispatch(fetchChatData());
+  }, [])
+
+  useEffect(() => {
+    setSelectedConv(conversations)
+  }, [conversations])
+
+  // const [allMessages, setAllMessages] = useState<Message[]>(selectedConv[0].messages);
+
+  console.log("==============>>>>>")
+  console.log(conversations);
+  console.log("==============>>>>>")
+
+  console.log("==============>>>>>")
+  console.log(selectedConv);
+  console.log("==============>>>>>")
 
   
-  const [selectedConv, setSelectedConv] = useState<Conversation [] >(conversations);
-  const [allMessages, setAllMessages] = useState<Message[]>(selectedConv[0].messages);
-  const userName = useSelector((state: RootState) => {state.user.user_Data?.userData});
-  console.log(userName);
-
   const [selectConvId, setSelectConvId] = useState<number>(1);
-
-  console.log(allMessages);
+  
+  // console.log(allMessages);
   const handleSendMessage = (newMessage: string) => {
     if (selectConvId !== null) {
-      const updatedConversations = selectedConv.map((conversation) =>
+      const updatedConversations = conversations.map((conversation: any) =>
         conversation.id === selectConvId
           ? {
               ...conversation,
               messages: [
                 ...conversation.messages,
                 {
-                  avatar: 'path',
-                  text: newMessage,
-                  sentBy: 'owner',
-                  isChatOwner: true,
+                  avatar: conversation.avatar,
+                  content: newMessage,
+                  sender: conversation.username,
+                  owner: true,
                 },
               ],
             }
@@ -63,23 +87,6 @@ export default function chat() {
     }
   }
 
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       // const response = await fetch('@/app/components/chatComp/message.json');
-  //       console.log(response)
-  //       const data = await response.json();
-  //       setMessages(data);
-  //       console.log(messages);
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
   return (
           <div className="flex flex-col text-slate-100 h-screen w-full">
             <div className=""><Navbar pageName="chat"/></div>
@@ -88,7 +95,7 @@ export default function chat() {
                 <div className="flex flex-col  h-full w-[30%] rounded-xl">
                   <div className="h-20 py-3 border-b rounded-lg bg-[#323232] border-b-[#E58E27]">Header</div>
                   <div className="h-[95] w-full  overflow-y-auto scrollbar-hide rounded-xl">
-                      {selectedConv.map((conversation) => (
+                      {conversations.map((conversation: any) => (
                         <div key={conversation.id} className="h-20 w-full bg-opacity-20 bg-white shadow-sm shadow-white">
                           <button
                           

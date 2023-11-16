@@ -155,7 +155,7 @@ export default function setting() {
     // setTfaEnabled(!tfaEnabled);
   }
 
-  const hidden_ = !tfaEnabled ? '' : 'hidden';
+  // const hidden_ = !tfaEnabled ? '' : 'hidden';
 
   return (
           <div className="flex flex-col text-slate-100 h-full min-h-screen min-w-screen w-full">

@@ -1,6 +1,7 @@
 import { createAsyncThunk ,createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store/store';
 import { log } from 'console'
+import axios from 'axios';
 
 export interface UserInfos {
   id: number;
@@ -53,17 +54,31 @@ export interface userState {
 const initialState = {
   entity: [],
 } as any;
+  export const fetchInfos = createAsyncThunk("user/fetch", async (thunkApi) => {
+  try {
+    const response = await axios.get('http://localhost:5000/Chat/98861', {withCredentials: true });
 
-export const fetchInfos = createAsyncThunk("user/fetch", async (thunkApi) => {
-  const response = await fetch("http://localhost:5000/Profile", {
-    method: "GET",
-    credentials: 'include',
-  });
+    if (response.status === 200) {
+      console.log('Data getted successfully:', response.data);
+      // console.log(response.data);
+    } else {
+      console.error('Data getting failed:', response.data);
+    }
+  } catch (error) {
+    console.error('Error getting data:', error);
+  }
+  })
+
+// export const fetchInfos = createAsyncThunk("user/fetch", async (thunkApi) => {
+//   const response = await fetch("http://localhost:5000/Profile", {
+//     method: "GET",
+//     credentials: 'include',
+//   });
+//   // console.log(response);
   
-  const data = await response.json();   
-  // console.log(data);
-  return (data);
-})
+//   const data = await response.json();   
+//   return (data);
+// })
 
 const userSlice = createSlice({
   name: 'user',

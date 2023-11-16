@@ -7,10 +7,13 @@ interface chatConversProps {
 }
 
 function ConversComp({conversation}: chatConversProps) {
-    console.log(typeof(conversation.messages))
-    const content:string | undefined = conversation.messages.at(conversation.messages.length - 1)?.text;
-    const avatar:string | undefined = conversation.messages.at(conversation.messages.length - 1)?.avatar;
-    const sender:string | undefined = conversation.messages.at(conversation.messages.length - 1)?.sentBy;
+    // console.log(typeof(conversation.messages))
+    const content:string | undefined = conversation?.messages?.at(conversation.messages.findLastIndex((index) => {} ))?.content;
+    const avatar:string | undefined = conversation?.messages?.at(conversation.messages.findLastIndex((index) => {} ))?.avatar;
+    const sender:string | undefined = conversation?.messages?.at(conversation.messages.findLastIndex((index) => {} ))?.sender;
+    console.log("senderwdjkeljdbkle")
+    console.log(conversation)
+    console.log("senderwdjkeljdbkle")
     // const avatar:string | undefined = conversation.messages.at(conversation.messages.length - 1)?.avatar;
 
   return (
@@ -22,7 +25,7 @@ function ConversComp({conversation}: chatConversProps) {
                 <div className='max-w-[200px] truncate'>{content}</div>
             </div>
         </div>
-        <div className={`${conversation.status ? "text-green-500" : "text-red-500"}`}>status</div>
+        <div className={`${conversation.online ? "text-green-500" : "text-red-500"}`}>status</div>
     </div>
   )
 }
