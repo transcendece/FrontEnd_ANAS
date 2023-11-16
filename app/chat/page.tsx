@@ -12,12 +12,14 @@ import store from "../store/store";
 import { useDispatch } from "react-redux";
 import { fetchChatData } from "../Slices/chatSlice";
 import { useCookies } from 'react-cookie';
+import { messages } from "../components/chatComp/messages";
+import axios from "axios";
 
 export interface Message {
   avatar: string,
   content: string;
   sender: string;
-  owner: boolean;
+  isOwner: boolean;
 }
 
 export interface Conversation {
@@ -25,6 +27,7 @@ export interface Conversation {
   online: boolean;
   username: string;
   avatar: string;
+  owner:string
   messages: Message[];
 }
 
@@ -45,21 +48,13 @@ export default function chat() {
 
   // const [allMessages, setAllMessages] = useState<Message[]>(selectedConv[0].messages);
 
-  console.log("==============>>>>>")
-  console.log(conversations);
-  console.log("==============>>>>>")
-
-  console.log("==============>>>>>")
-  console.log(selectedConv);
-  console.log("==============>>>>>")
-
   
   const [selectConvId, setSelectConvId] = useState<number>(1);
   
   // console.log(allMessages);
   const handleSendMessage = (newMessage: string) => {
     if (selectConvId !== null) {
-      const updatedConversations = conversations.map((conversation: any) =>
+      const updatedConversations = selectedConv.map((conversation: any) =>
         conversation.id === selectConvId
           ? {
               ...conversation,
@@ -68,8 +63,8 @@ export default function chat() {
                 {
                   avatar: conversation.avatar,
                   content: newMessage,
-                  sender: conversation.username,
-                  owner: true,
+                  sender: conversation.owner,
+                  isOwner: true,
                 },
               ],
             }
@@ -77,6 +72,7 @@ export default function chat() {
       );
 
       setSelectedConv(updatedConversations);
+      
     // const newChatMessage: Message = {
     //   avatar:"",
     //   text: newMessage,
@@ -95,7 +91,7 @@ export default function chat() {
                 <div className="flex flex-col  h-full w-[30%] rounded-xl">
                   <div className="h-20 py-3 border-b rounded-lg bg-[#323232] border-b-[#E58E27]">Header</div>
                   <div className="h-[95] w-full  overflow-y-auto scrollbar-hide rounded-xl">
-                      {conversations.map((conversation: any) => (
+                      {selectedConv.map((conversation: Conversation) => (
                         <div key={conversation.id} className="h-20 w-full bg-opacity-20 bg-white shadow-sm shadow-white">
                           <button
                           
@@ -111,7 +107,7 @@ export default function chat() {
                 <div className="w-[60%] h-full bg-[#323232] rounded-xl">
                   <ChatHeader name="Nems"/>
                   <ChatContent messages={selectedConv.find((conversation) => conversation.id === selectConvId)?.messages || []}/>
-                  <ChatInput onSendMessage={handleSendMessage}/>
+                  <ChatInput onSendMessage={handleSendMessage} conversation={selectedConv.find((conversation) => conversation.id === selectConvId)}/>
                 </div>
               </div>
             </div>

@@ -5,7 +5,7 @@ export interface Message {
   avatar: string,
   content: string;
   sender: string;
-  owner: boolean;
+  isOwner: boolean;
 }
 
 export interface Conversation {
@@ -13,6 +13,7 @@ export interface Conversation {
   online: boolean;
   username: string;
   avatar: string;
+  owner:string
   messages: Message[];
 }
 

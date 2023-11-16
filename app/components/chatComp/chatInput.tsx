@@ -2,30 +2,44 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { RiSendPlane2Fill } from "react-icons/ri";
-// import { socket } from './socket';
+import { socket } from './socket';
 import { io } from 'socket.io-client';
+import { Conversation } from '@/app/Slices/chatSlice';
+import axios from 'axios';
 
 export interface chatInputProps {
   onSendMessage: (message: string) => void;
+  conversation: Conversation;
 }
 
-function ChatInput({onSendMessage}: chatInputProps) {
+function ChatInput({onSendMessage, conversation}: chatInputProps) {
   const [message, setMessage] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(event.target.value);
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (message.trim() !== '') {
-      // socket.emit('SendMessage', {
-      //   "content" : message,
-      //   "senderId" : "gadgda",
-      //   "recieverId" : "afdfad",
-      //   "conversationId" : ""
-      // });
+      socket.emit('SendMessage', {
+        "content" : message,
+        "senderId" : "iel-bakk",
+        "recieverId" : "abigeddi",
+      });
       onSendMessage(message);
       setMessage('');
+      try {
+        const response = await axios.get('http://localhost:5000/Chat/98861');
+  
+        if (response.status === 200) {
+          console.log('Data getted successfully:', response.data);
+          console.log(response.data);
+        } else {
+          console.error('Data getting failed:', response.data);
+        }
+      } catch (error) {
+        console.error('Error gettng data:', error);
+      }
     }
   };
 
