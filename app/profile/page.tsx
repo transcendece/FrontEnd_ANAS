@@ -15,12 +15,8 @@ export default function Pra() {
   const Achievs = useSelector((state: RootState) => state.user.user_Data?.achievements);
   const dataUser = useSelector((state: RootState) => state.user.user_Data?.userData);
 
-  console.log("================");
   // console.log(matchHIst);
   // console.log(dataUser);
-
-  
-  console.log("================");
   // const status = useSelector((state: any) => state.user.status);
   // const error = useSelector((state: any) => state.user.error);
 
@@ -40,10 +36,7 @@ export default function Pra() {
 
   return (
 
-
-
-
-    <div className="flex flex-col medium:h-full min-h-screen min-w-screen">
+    <main className="flex flex-col medium:h-full min-h-screen min-w-screen">
       <div className="h-16 mb-7 w-full Large:h-24"><Navbar pageName="Profile" /></div>
       <div className="flex justify-between flex-col space-y-16 medium:space-y-0 h-full  medium:flex-row  medium:gap-12 medium:min-h-[1200px] w-[410px] medium:w-[95%] xMedium:h-[1200px] medium:min-w-[1000px] medium:mx-auto">
         <div className="w-[100%] xMedium:w-[45%] medium:h-[90%] h-[80%] Large:h-full items-center xMedium:ml-0 m-auto flex flex-col medium:gap-6">
@@ -77,8 +70,8 @@ export default function Pra() {
                 <div className="md:py-2">User Name :</div>
                 <div className="md:py-2">Rank :</div>
                 <div className="md:py-2">Level :</div>
-              </div>
-              <div className="flex flex-col justify-between h-[65%] text-lg xLarge:text-2xl m-auto text-white">
+                </div>
+                <div className="flex flex-col justify-between h-[65%] text-lg xLarge:text-2xl m-auto text-white">
                 <div className="md:py-2">{user.name}</div>
                 <div className="md:py-2">{user.userName}</div>
                 <div className="md:py-2">{user.rank}</div>
@@ -93,7 +86,7 @@ export default function Pra() {
           <h1 className=" xLarge:text-3xl medium:pt-9 text-[#E58E27] p-5">LAST MATCH HISTORY</h1>
           <div className="overflow-y-scroll flex flex-col h-[100%] medium:h-[90%] w-[100%] medium:w-[100%] text-[#E58E27] m-auto scrollbar-hide">
           {matchHIst?.map((_: any, index: number) => (
-    <div key={index} className="p-5">
+            <div key={index} className="p-5">
       <MatchHist index={index} />
     </div>
   ))}
@@ -101,8 +94,6 @@ export default function Pra() {
         </div>
       </div>
 
-    </div>
-
-
+    </main>
   )
 } 

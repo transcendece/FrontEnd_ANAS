@@ -1,3 +1,4 @@
+'use client'
 import './globals.css'
 import type { Metadata } from 'next'
 import Sidebar from './components/Sidebar'
@@ -5,13 +6,15 @@ import { Space_Grotesk } from 'next/font/google';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import MyProvider from './store/provider';
+import { usePathname, redirect } from 'next/navigation';
+import NotFoud404 from './notFoud404/page';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: '300',
 })
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'AREA 420 PING PONG',
   description: 'ONLINE PING PONG',
 }
@@ -21,6 +24,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+    const router = usePathname();
+    if (router !== '/chat' && router !== '/profile' && router !== '/setting' && router !== '/rank' && router !== '/game') {
+      return <NotFoud404/>;
+    }
   return (
 
     <html lang="en" className={spaceGrotesk.className}>

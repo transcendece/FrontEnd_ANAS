@@ -53,16 +53,9 @@ export default function chat() {
   useEffect(() => {
     socket.on('RecieveMessage', (data: Message) => {
       
-      // Assuming that conversationId is included in the received data
       if (data.conversationId) {
         const timestamp = Date.now();
         
-        // Check if the conversation already exists in selectedConv
-
-        // for (let index : number = 0; index < conversations.length; index++) {
-        //   // if (conversations[index].conversationId === data.conversationId)
-        //     console.log(conversations[index]);
-        // }
         const existingConversation: Conversation | undefined = selectedConv.find(
           (conversation) => conversation.username === data.sender
           );
@@ -70,8 +63,7 @@ export default function chat() {
           console.log(existingConversation);
           
           console.log('got event ==> ', existingConversation);
-          
-          // If the conversation exists, update it with the new message
+
           if (existingConversation ) {
             setSelectedConv((prevConversations) =>
             prevConversations.map((conversation) =>

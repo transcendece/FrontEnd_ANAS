@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import Link from 'next/link'
 import { GoPerson, GoTrophy } from "react-icons/go";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
@@ -18,7 +18,7 @@ export default function Sidebar() {
                           <Link className="text-[#E58E27] m-auto text-3xl xLarge:text-4xl" href={'/profile'}><GoPerson/></Link>
                           <Link className="text-[#E58E27] m-auto text-3xl xLarge:text-4xl" href={'/rank'}><GoTrophy/></Link>
                           <Link className="text-[#E58E27] m-auto text-3xl xLarge:text-4xl" href={'/chat'}><HiOutlineChatBubbleLeftEllipsis/></Link>
-                          <Link className="text-[#E58E27] m-auto text-3xl xLarge:text-4xl" href={'/'}><GiAchievement/></Link>
+                          <Link className="text-[#E58E27] m-auto text-3xl xLarge:text-4xl" href={'/notFoud404'}><GiAchievement/></Link>
                           <Link className="text-[#E58E27] m-auto text-3xl xLarge:text-4xl" href={'/setting'}><IoSettingsOutline/></Link>
                     </div>
                 </div>
