@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { fetchChatData } from "../Slices/chatSlice";
 import { useCookies } from 'react-cookie';
 import { messages } from "../components/chatComp/messages";
+import { socket } from "../components/chatComp/socket";
 import axios from "axios";
 
 export interface Message {
@@ -20,6 +21,7 @@ export interface Message {
   content: string;
   sender: string;
   isOwner: boolean;
+  conversationId? : string;
 }
 
 export interface Conversation {
@@ -27,9 +29,10 @@ export interface Conversation {
   online: boolean;
   username: string;
   avatar: string;
-  owner:string
+  owner:string;
   timestamp?: number;
   messages: Message[];
+  conversationId? : string;
 }
 
 export default function chat() {
@@ -38,8 +41,8 @@ export default function chat() {
   const [selectedConv, setSelectedConv] = useState<Conversation[]>(conversations);
 
   useEffect(() => {
-    console.log("test")
-    console.log('Dispatching fetchChatData...');
+    // console.log("test")
+    // console.log('Dispatching fetchChatData...');
     dispatch(fetchChatData());
   }, [])
 
@@ -47,10 +50,53 @@ export default function chat() {
     setSelectedConv(conversations)
   }, [conversations])
 
+  useEffect(() => {
+    socket.on('RecieveMessage', (data: Message) => {
+      
+      // Assuming that conversationId is included in the received data
+      if (data.conversationId) {
+        const timestamp = Date.now();
+        
+        // Check if the conversation already exists in selectedConv
+
+        // for (let index : number = 0; index < conversations.length; index++) {
+        //   // if (conversations[index].conversationId === data.conversationId)
+        //     console.log(conversations[index]);
+        // }
+        const existingConversation: Conversation | undefined = selectedConv.find(
+          (conversation) => conversation.username === data.sender
+          );
+          console.log(data.conversationId);
+          console.log(existingConversation);
+          
+          console.log('got event ==> ', existingConversation);
+          
+          // If the conversation exists, update it with the new message
+          if (existingConversation ) {
+            setSelectedConv((prevConversations) =>
+            prevConversations.map((conversation) =>
+            conversation.id === existingConversation.id
+            ? {
+              ...existingConversation,
+              timestamp,
+              messages: [...existingConversation.messages, data],
+            }
+            : conversation
+            )
+            );
+          }
+        }
+    });
+  
+    return () => {
+      socket.off('RecieveMessage');
+    };
+  }, [selectedConv]); 
+  
   // const [allMessages, setAllMessages] = useState<Message[]>(selectedConv[0].messages);
 
   
-  const [selectConvId, setSelectConvId] = useState<number>(1);
+  const [selectConvId, setSelectConvId] = useState<number>(0);
   
   // console.log(allMessages);
   const handleSendMessage = (newMessage: string) => {

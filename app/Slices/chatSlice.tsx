@@ -6,6 +6,7 @@ export interface Message {
   content: string;
   sender: string;
   isOwner: boolean;
+  conversationId?: string;
 }
 
 export interface Conversation {
@@ -13,7 +14,7 @@ export interface Conversation {
   online: boolean;
   username: string;
   avatar: string;
-  owner:string
+  owner:string;
   timestamp?: number;
   messages: Message[];
 }
@@ -25,12 +26,12 @@ const initialState:{entity:Conversation []} = {
 
 export const fetchChatData = createAsyncThunk("chat/fetch", async (thunkApi) => {
     try {
-        const response = await fetch("http://localhost:5000/Chat/98861", {
+        const response = await fetch("http://localhost:5000/Chat", {
           method: "GET",
-          // credentials: 'include',
+          credentials: 'include',
         });
         const data = await response.json();
-        console.log('Chat data from server:', data);
+        // console.log('Chat data from server:', data);
         return data;
       } catch (error) {
         console.error('Error fetching chat chat data:', error);
@@ -50,7 +51,7 @@ const chatSlice = createSlice({
         // state.loading = true;
       })
       .addCase(fetchChatData.fulfilled, (state, action) => {
-        console.log('Chat data from server:', action.payload);
+        // console.log('Chat data from server:', action.payload);
         state.entity = action.payload;
         // state.loading = false;
       })

@@ -56,7 +56,7 @@ const initialState = {
 } as any;
   export const fetchInfos = createAsyncThunk("user/fetch", async (thunkApi) => {
   try {
-    const response = await axios.get('http://localhost:5000/Chat/98861', {withCredentials: true });
+    const response = await axios.get('http://localhost:5000/Profile', {withCredentials: true });
 
     if (response.status === 200) {
       console.log('Data getted successfully:', response.data);

@@ -23,8 +23,8 @@ function ChatInput({onSendMessage, conversation}: chatInputProps) {
     if (message.trim() !== '') {
       socket.emit('SendMessage', {
         "content" : message,
-        "senderId" : "iel-bakk",
-        "recieverId" : "abigeddi",
+        "senderId" : conversation?.owner,
+        "recieverId" : conversation?.username,
       });
       onSendMessage(message);
       setMessage('');
