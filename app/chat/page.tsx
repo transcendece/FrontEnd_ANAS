@@ -162,7 +162,7 @@ export default function chat() {
                 <div className="w-[60%] h-full bg-[#323232] rounded-xl">
                   <ChatHeader name="Nems"/>
                   <ChatContent messages={selectedConv.find((conversation) => conversation.id === selectConvId)?.messages || []}/>
-                  <ChatInput onSendMessage={handleSendMessage} conversation={sortedConversations.find((conversation) => conversation.id === selectConvId)}/>
+                  <ChatInput onSendMessage={handleSendMessage} conversation={sortedConversations.find((conversation) => conversation.id === selectConvId) as Conversation}/>
                 </div>
               </div>
             </div>
