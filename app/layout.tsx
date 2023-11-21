@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
     const router = usePathname();
-    if (router !== '/chat' && router !== '/profile' && router !== '/setting' && router !== '/rank' && router !== '/game') {
+    if (router !== '/chat' && router !== '/profile' && router !== '/setting' && router !== '/rank' && router !== '/game' && router !== '/2FaValidation') {
       return <NotFoud404/>;
     }
   return (

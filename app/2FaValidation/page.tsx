@@ -11,7 +11,7 @@ export default function TwoFactorValidation() {
     code: '',
   })
 
-  const handleInputChange = (index, value) => {
+  const handleInputChange = (index: any, value: any) => {
     const newOtpValues = [...otpValues];
     const newbody = body
     newOtpValues[index] = value;
@@ -51,7 +51,7 @@ export default function TwoFactorValidation() {
                     type="text"
                     value={value}
                     onChange={e => handleInputChange(index, e.target.value)}
-                    maxLength="1"
+                    maxLength={1}
                   />
                 ))}
               </div>
