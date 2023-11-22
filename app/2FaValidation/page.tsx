@@ -10,6 +10,8 @@ export default function TwoFactorValidation() {
   const [body, setBody] = useState({
     code: '',
   })
+  const [errorMessage, setErrorMessage] = useState('');
+  const inputRefs = otpValues.map(() => React.createRef());
 
   const handleInputChange = (index: any, value: any) => {
     const newOtpValues = [...otpValues];
@@ -17,19 +19,46 @@ export default function TwoFactorValidation() {
     newOtpValues[index] = value;
     setOtpValues(newOtpValues);
     setBody(newbody)
+
+    if (value.length === 1) {
+      // Get the next input field's reference
+      const nextInputRef = inputRefs[index + 1];
+   
+      // If the next input field exists, set the focus on it
+      if (nextInputRef) {
+        nextInputRef.current.focus();
+      }
+    }
+    if (value.length === 0) {
+      // Get the previous input field's reference
+      const prevInputRef = inputRefs[index - 1];
+    
+      // If the previous input field exists, set the focus on it
+      if (prevInputRef) {
+        prevInputRef.current.focus();
+      }
+     }
   };
 
   const handleValidate = async () => {
   
     body.code = otpValues.join('');
     console.log("otp", body)
+    
+    await axios.post('http://localhost:5000/2FA/validation', body, {withCredentials: true})
+    .then(response => {
 
-    const response = await axios.post('http://localhost:5000/2FA/validation', body, {withCredentials: true})
+      if (response.status === 200)
+        router.push('/profile')
+    })
+   .catch(error => {
 
-    if (response.status === 200) {
-      console.log('data', response.data)
-      router.push('/profile')
+    if (error.response && error.response.status === 401) {
+      setOtpValues(['', '', '', '', '', ''])
+      setErrorMessage('Invalid OTP. Try again.')
     }
+      
+   })
   };
 
   return (
@@ -47,6 +76,7 @@ export default function TwoFactorValidation() {
                 {otpValues.map((value, index) => (
                   <input
                     key={index}
+                    ref={inputRefs[index]}
                     className="m-2 border h-10 w-10 text-center form-control rounded text-black"
                     type="text"
                     value={value}
@@ -60,6 +90,7 @@ export default function TwoFactorValidation() {
                   <span className="font-bold">Validate</span><i className='bx bx-caret-right ml-1'></i>
                 </a>
               </div>
+                  {errorMessage && <p className="text-red">{errorMessage}</p>}
             </div>
           </div>
         </div>
