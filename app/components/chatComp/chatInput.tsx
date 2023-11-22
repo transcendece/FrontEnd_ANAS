@@ -33,7 +33,7 @@ function ChatInput({onSendMessage, conversation}: chatInputProps) {
   };
 
   return (
-    <div className='w-full h-20 flex justify-center items-center m-auto border-t border-t-[#E58E27]'>
+    <div className='w-full h-20 flex justify-center items-center border-t border-t-[#E58E27]'>
       <input
         type="text"
         value={message}

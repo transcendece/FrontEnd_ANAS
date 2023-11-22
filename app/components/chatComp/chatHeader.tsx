@@ -7,7 +7,7 @@ interface ChatHeaderProps {
 
 const ChatHeader = ({ name }: ChatHeaderProps) => {
   return (
-    <div className="border-b border-b-[#E58E27] h-20 py-3 px-6 flex flex-row justify-between items-center">
+    <div className="border-b border-b-[#E58E27] h-20 w-full py-3 px-6 flex flex-row justify-between items-center">
       <div className="flex flex-row items-center space-x-1.5">
         <div>avatar</div>
         <div className="flex flex-col">

@@ -19,7 +19,7 @@ function ChatContent({messages}: ChatContentProps) {
   }, [messages])
 
     return (
-        <div className="max-h-[80%] h-[80%] px-6 py-1 overflow-y-auto scrollbar-hide">
+        <div className="max-h-[80%] h-[78%] px-6 py-1 overflow-y-auto scrollbar-hide">
           { messages.slice(0).reverse().map((message, index) => (
             <div key={index} className={`py-5 flex flex-row w-full ${!message.isOwner ? "justify-end" : "justify-start"}`}>
               <div className={`bg-white ${!message.isOwner ? "order-2" : "order-1"}`}>
