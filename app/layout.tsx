@@ -25,9 +25,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
     const router = usePathname();
-    if (router !== '/chat' && router !== '/profile' && router !== '/setting' && router !== '/rank' && router !== '/game' && router !== '/2FaValidation') {
+    if (router !== '/chat' && router !== '/profile' && router !== '/setting' && router !== '/rank' && router !== '/game' && router !== '/2FaValidation' && router !== '/login') {
       return <NotFoud404/>;
     }
+    if (router === '/2FaValidation' || router === '/login')
+    return (
+
+      <html lang="en" className={spaceGrotesk.className}>
+        <body className=''>
+          <main className='flex min-w-fit h-screen text-white justify-start bg-[#131313] ' >
+              <div className='w-full medium:h-screen xMedium:h-full'>
+              {children}
+              </div>
+          </main>
+        </body>
+      </html>
+    )
   return (
 
     <html lang="en" className={spaceGrotesk.className}>

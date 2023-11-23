@@ -11,7 +11,7 @@ export default function TwoFactorValidation() {
     code: '',
   })
   const [errorMessage, setErrorMessage] = useState('');
-  const inputRefs = otpValues.map(() => React.createRef());
+  const inputRefs = otpValues.map(() => React.createRef<HTMLInputElement>());
 
   const handleInputChange = (index: any, value: any) => {
     const newOtpValues = [...otpValues];
@@ -25,7 +25,7 @@ export default function TwoFactorValidation() {
       const nextInputRef = inputRefs[index + 1];
    
       // If the next input field exists, set the focus on it
-      if (nextInputRef) {
+      if (nextInputRef && nextInputRef.current) {
         nextInputRef.current.focus();
       }
     }
@@ -34,7 +34,7 @@ export default function TwoFactorValidation() {
       const prevInputRef = inputRefs[index - 1];
     
       // If the previous input field exists, set the focus on it
-      if (prevInputRef) {
+      if (prevInputRef && prevInputRef.current) {
         prevInputRef.current.focus();
       }
      }
