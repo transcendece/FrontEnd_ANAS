@@ -2,21 +2,53 @@ import Link from 'next/link';
 import React from 'react'
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillPlayCircleFill } from "react-icons/bs";
+import { useState } from 'react';
 
 type Props = {
     pageName: string
 }
 
+
+
 export default function Navbar({pageName}:Props) {
+  
+  const usersData = [
+    { id: 1, name: 'dser1', username: 'user1' },
+    { id: 2, name: 'dser2', username: 'user2' },
+    { id: 3, name: 'doyo', username: 'yoyo' },
+    { id: 4, name: 'dodo', username: 'dodo' },
+    { id: 5, name: 'doro', username: 'doro' },
+    { id: 6, name: 'dppl', username: 'dppl' },
+  ];
+  const [searchInput, setSearchInput] = useState<string>('');
+  const sortedUsersData = usersData.slice().sort((a, b) => a.name.localeCompare(b.name));
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchInput(e.target.value);
+  };
+  let filteredUsers = searchInput ? sortedUsersData.filter((user) =>
+    user.name.toLowerCase().includes(searchInput.toLowerCase())
+  )  : [];
   return (
     <div className='flex justify-between medium:min-w-[640px] h-16 Large:h-24 mx-6'>
       <div className='flex w-[50%] text-[#E58E27] justify-normal items-center'>
         <h3 className='md:pr-8 pr-3 md:ml-3 xLarge:text-xl'>{pageName}</h3>
-        <div className='relative'>
+        <div className='relative h-full w-full'>
           <div>
-            <input maxLength={13} type='text' className='text-orange-100 pl-1 py-1 text-sm focus:outline-none Large:w-[400px] w-32 Large:text-lg medium:w-[300px] border rounded-lg bg-transparent border-[#E58E27]'></input>
+            <input maxLength={13} type='text' name={searchInput} onChange={handleSearch} className=' top-5 absolute text-orange-100 pl-1 py-1 text-sm focus:outline-none Large:w-[400px] w-32 Large:text-lg medium:w-[300px] border rounded-lg bg-transparent border-[#E58E27]'></input>
+            <ul className={` overflow-y-auto scrollbar-hide max-h-48 list-none p-1 m-0 absolute top-[52px] text-sm Large:w-[400px] w-32 Large:text-lg medium:w-[300px] ${searchInput && filteredUsers.length > 0 ? "" : "hidden"} border-t-0 rounded-b-lg bg-opacity-80 bg-[#323232] border-[#E58E27]`}>
+              {searchInput && filteredUsers.length === 0 ? (<li></li>) :
+              (filteredUsers.map((user) => (
+              <li
+                key={user.id}
+                className="cursor-pointer p-2 hover:text-orange-500 hover:bg-white rounded-md text-slate-200"
+              >
+                {user.name}
+              </li>)
+              )) }
+            </ul>
           </div>
-          <div className='absolute top-1 left-[100px] Large:left-[368px] medium:left-[270px] text-2xl Large:text-3xl'><AiOutlineSearch/></div>
+          <div className='absolute top-6 left-[100px] Large:left-[368px] medium:left-[270px] text-2xl Large:text-3xl'><AiOutlineSearch/></div>
         </div>
       </div>
       <div className='flex w-[40%] text-[#E58E27] justify-end items-center'>
