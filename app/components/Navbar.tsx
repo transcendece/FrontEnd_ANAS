@@ -21,6 +21,7 @@ export default function Navbar({pageName}:Props) {
     { id: 6, name: 'dppl', username: 'dppl' },
   ];
   const [searchInput, setSearchInput] = useState<string>('');
+  const [hideIt, setHideIt] = useState<boolean>(false);
   const sortedUsersData = usersData.slice().sort((a, b) => a.name.localeCompare(b.name));
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,8 +36,8 @@ export default function Navbar({pageName}:Props) {
         <h3 className='md:pr-8 pr-3 md:ml-3 xLarge:text-xl'>{pageName}</h3>
         <div className='relative h-full w-full'>
           <div>
-            <input maxLength={13} type='text' name={searchInput} onChange={handleSearch} className=' top-5 absolute text-orange-100 pl-1 py-1 text-sm focus:outline-none Large:w-[400px] w-32 Large:text-lg medium:w-[300px] border rounded-lg bg-transparent border-[#E58E27]'></input>
-            <ul className={` overflow-y-auto scrollbar-hide max-h-48 list-none p-1 m-0 absolute top-[52px] text-sm Large:w-[400px] w-32 Large:text-lg medium:w-[300px] ${searchInput && filteredUsers.length > 0 ? "" : "hidden"} border-t-0 rounded-b-lg bg-opacity-80 bg-[#323232] border-[#E58E27]`}>
+            <input maxLength={13} type='text' name={searchInput} onChange={handleSearch} className={`${hideIt ? "w-[270px]" : "hidden"} medium:block top-[18px] absolute text-orange-100 pl-1 py-1 text-sm focus:outline-none Large:w-[400px] w-32 Large:text-lg medium:w-[300px] border rounded-lg bg-transparent border-[#E58E27]`}></input>
+            <ul className={` overflow-y-auto scrollbar-hide max-h-48 list-none p-1 m-0 absolute top-[52px] text-sm Large:w-[400px] w-[270px] Large:text-lg medium:w-[300px] ${searchInput && filteredUsers.length > 0 && hideIt ? "" : "hidden medium:block"} ${searchInput && filteredUsers.length > 0 ? "" : "bg-opacity-0"} border-t-0 rounded-b-lg bg-opacity-80 bg-[#323232] border-[#E58E27]`}>
               {searchInput && filteredUsers.length === 0 ? (<li></li>) :
               (filteredUsers.map((user) => (
               <li
@@ -48,12 +49,13 @@ export default function Navbar({pageName}:Props) {
               )) }
             </ul>
           </div>
-          <div className='absolute top-6 left-[100px] Large:left-[368px] medium:left-[270px] text-2xl Large:text-3xl'><AiOutlineSearch/></div>
+          <div className='hidden medium:block absolute top-5 left-[240px] Large:left-[368px] medium:left-[270px] text-2xl Large:text-3xl'><AiOutlineSearch/></div>
+          <button onClick={() => setHideIt(!hideIt)} className={`absolute top-5 ${hideIt ? "left-[240px]" : "left-[5px]"} Large:left-[368px] medium:hidden medium:left-[270px] text-2xl Large:text-3xl`}><AiOutlineSearch/></button>
         </div>
       </div>
       <div className='flex w-[40%] text-[#E58E27] justify-end items-center'>
-        <Link href={'/'}><h1 className="text-[#E58E27] mr-2 md:mr-8 font-sans text-md font-bold flex-none Large:text-xl">AREA 420</h1></Link>
-        <Link href={'/game'} className=' medium:py-1 medium:px-6 Large:px-8 bg-[#E58E27] text-sm text-slate-100 rounded-full medium:rounded-sm flex-none Large:text-xl  ml-8'>
+        <Link href={'/'}><h1 className={`${hideIt ? "hidden medium:block" : ""} text-[#E58E27] mr-2 md:mr-8 font-sans text-md font-bold flex-none Large:text-xl`}>AREA 420</h1></Link>
+        <Link href={'/game'} className="medium:py-1 medium:px-6 Large:px-8 bg-[#E58E27] text-sm text-slate-100 rounded-full medium:rounded-sm flex-none Large:text-xl  ml-8">
           <div className='hidden medium:block'>PLAY</div>
           <div className='text-3xl rounded-full medium:hidden'><BsFillPlayCircleFill/></div>
         </Link>
