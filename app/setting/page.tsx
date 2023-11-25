@@ -158,9 +158,9 @@ export default function setting() {
   // const hidden_ = !tfaEnabled ? '' : 'hidden';
 
   return (
-          <div className="flex flex-col text-slate-100 h-full min-h-screen min-w-screen w-full">
-            <div className="h-16 xLarge:h-24"><Navbar pageName="Profile" /></div>
-            <div className="flex items-center h-full xMedium:h-[1200px] medium:min-w-[1000px] gap-12 m-4">
+          <div className="flex flex-col text-slate-100 h-full min-h-screen min-w-screen w-full m-auto">
+            <div className="h-16 xLarge:h-24"><Navbar pageName="Setting" /></div>
+            <div className="flex items-center h-full xMedium:h-[1200px] medium:min-w-[1000px] gap-12 m-auto">
               <div className="flex flex-col w-[40%] Large:h-[63%] xMedium:h-[57%] min-h-[500px] h-[40%] justify-between">
                 <form onSubmit={handleSubmit} className="flex flex-col w-[100%] gap-4 h-[40%] justify-between">
                   <div className="flex py-4 xMedium:min-w-[600px] justify-center w-[400px] mx-auto">

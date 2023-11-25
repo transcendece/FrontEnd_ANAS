@@ -31,9 +31,9 @@ export default function Navbar({pageName}:Props) {
     user.name.toLowerCase().includes(searchInput.toLowerCase())
   )  : [];
   return (
-    <div className='flex justify-between medium:min-w-[640px] h-16 Large:h-24 mx-6'>
+    <div className='flex justify-between medium:min-w-[450px] h-16 Large:h-24 mx-6'>
       <div className='flex w-[50%] text-[#E58E27] justify-normal items-center'>
-        <h3 className='md:pr-8 pr-3 md:ml-3 xLarge:text-xl'>{pageName}</h3>
+        <h3 className='md:pr-8 pr-3 ml-7 medium:ml-3 xLarge:text-xl'>{pageName}</h3>
         <div className='relative h-full w-full'>
           <div>
             <input maxLength={13} type='text' name={searchInput} onChange={handleSearch} className={`${hideIt ? "w-[270px]" : "hidden"} medium:block top-[18px] absolute text-orange-100 pl-1 py-1 text-sm focus:outline-none Large:w-[400px] w-32 Large:text-lg medium:w-[300px] border rounded-lg bg-transparent border-[#E58E27]`}></input>
