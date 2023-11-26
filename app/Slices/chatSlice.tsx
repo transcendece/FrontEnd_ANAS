@@ -26,7 +26,7 @@ const initialState:{entity:Conversation []} = {
 
 export const fetchChatData = createAsyncThunk("chat/fetch", async (thunkApi) => {
     try {
-        const response = await fetch("http://localhost:5000/Chat", {
+        const response = await fetch("http://localhost:5000/Chat/user", {
           method: "GET",
           credentials: 'include',
         });

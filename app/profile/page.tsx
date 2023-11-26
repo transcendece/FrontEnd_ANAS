@@ -36,9 +36,9 @@ export default function Pra() {
 
   return (
 
-    <main className="flex flex-col medium:h-full min-h-screen min-w-screen">
+    <main className="flex flex-col medium:h-full min-h-screen min-w-screen m-auto">
       <div className="h-16 mb-7 w-full Large:h-24"><Navbar pageName="Profile" /></div>
-      <div className="flex justify-between flex-col space-y-16 medium:space-y-0 h-full  medium:flex-row  medium:gap-12 medium:min-h-[1200px] w-[410px] medium:w-[95%] xMedium:h-[1200px] medium:min-w-[1000px] medium:mx-auto">
+      <div className="flex  m-auto justify-between flex-col space-y-16 medium:space-y-0 h-full  medium:flex-row  medium:gap-12 medium:min-h-[1200px] w-[410px] medium:w-[95%] xMedium:h-[1200px] medium:min-w-[1000px] medium:mx-auto">
         <div className="w-[100%] xMedium:w-[45%] medium:h-[90%] h-[80%] Large:h-full items-center xMedium:ml-0 m-auto flex flex-col medium:gap-6">
           <div className="flex flex-col xMedium:flex-row w-[100%] items-center xMedium:w-full h-[40%] medium:h-[40%] xMedium:h-[32%] xLarge:h-[45%] Large:h-[38%] rounded-lg medium:mb-2 mx-auto">
             <div className="min-w-[30%] w-72 h-[70%]">
