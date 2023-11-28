@@ -135,7 +135,7 @@ export default function chat() {
   return (
           <div className="flex flex-col justify-between items-center h-screen min-h-screen min-w-screen">
             <div className="h-16 w-full Large:h-24"><Navbar pageName="chat"/></div>
-            <div className=" w-[90%] h-[80%] min-h-[600px] medium:min-h-[700px] m-auto">
+            <div className="h-[80%] min-h-[600px] medium:min-h-[700px] m-auto w-[410px] medium:w-[80%] mt-11">
               <div className="w-full h-[90%] xMedium:h-full flex xMedium:flex xMedium:justify-between xMedium:items-center ">
                 <div id="id_1" className={`${showConversations ? 'flex' : 'hidden'} h-full w-full xMedium:flex flex-col bg-[#323232] xMedium:w-[30%] rounded-xl`}>
                   <div className="h-20 py-3 w-full border-b rounded-t-lg border-b-[#E58E27]">My conversations</div>
