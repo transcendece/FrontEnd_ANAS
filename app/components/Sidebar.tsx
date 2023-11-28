@@ -9,7 +9,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 export default function Sidebar() {
     return (
-        <div id="navbar1" className="bg-[#323232] text-slate-100 flex flex-col justify-between min-h-full h-full w-12 medium:w-20 xLarge:w-32">
+        <div id="navbar1" className="bg-[#323232] text-slate-100 flex flex-col justify-between min-h-full h-screen fixed w-12 medium:w-20 xLarge:w-32">
                 <div className='flex flex-col justify-between h-[60%]'>
                     <div className="p-1 xLarge:p-0 h-[10%]">
                         <Image className='rounded-full shadow-neon-light' src={'/batman.png'} layout="responsive" width={30} height={30} alt="PING PONG" priority={true} />

@@ -158,10 +158,10 @@ export default function setting() {
   // const hidden_ = !tfaEnabled ? '' : 'hidden';
 
   return (
-          <div className="flex flex-col text-slate-100 h-full min-h-screen min-w-screen w-full m-auto">
-            <div className="h-16 xLarge:h-24"><Navbar pageName="Setting" /></div>
-            <div className="flex items-center h-full xMedium:h-[1200px] medium:min-w-[1000px] gap-12 m-auto">
-              <div className="flex flex-col w-[40%] Large:h-[63%] xMedium:h-[57%] min-h-[500px] h-[40%] justify-between">
+          <div className="flex flex-col justify-between text-slate-100 h-full min-h-screen min-w-screen w-full">
+            <div className="h-16 xLarge:h-24"><Navbar pageName="setting" /></div>
+            <div className="flex items-center w-full h-[100%] m-auto min-h-[750px]  medium:m-auto medium:justify-center">
+              <div className="flex flex-col w-[100%] xMedium:w-[40%] Large:h-[63%] xMedium:h-[57%] min-h-[500px] h-[80%] justify-between">
                 <form onSubmit={handleSubmit} className="flex flex-col w-[100%] gap-4 h-[40%] justify-between">
                   <div className="flex py-4 xMedium:min-w-[600px] justify-center w-[400px] mx-auto">
                     <Image className='rounded-full border-4 w-48 h-48 xMedium:w-[250px] xMedium:h-[250px] border-[#E58E27]' alt='' src={'/gsus.jpeg'} height={250} width={250}/>
@@ -228,7 +228,7 @@ export default function setting() {
 {/* pop-Up */}
                 </form>           
               </div>
-              <div className=" m-auto xMedium:min-w-[600px] hidden medium:block">
+              <div className=" xMedium:min-w-[500px] w-[600px] hidden medium:block">
                 <Image className='' alt='' src={'/pingPaddles.png'} height={1200} width={1200}/>
               </div>
             </div>

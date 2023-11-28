@@ -10,6 +10,7 @@ import { usePathname, redirect } from 'next/navigation';
 import NotFoud404 from './notFoud404/page';
 import { useState } from 'react';
 import { AiOutlineMenu } from "react-icons/ai";
+import React from 'react';
 
 
 const spaceGrotesk = Space_Grotesk({
@@ -49,7 +50,7 @@ export default function RootLayout({
         <body className=''>
           <main className='flex min-w-fit h-screen text-white justify-start bg-[#131313] ' >
               <div className='w-full medium:h-screen xMedium:h-full'>
-              {children}
+                {children}
               </div>
           </main>
         </body>
@@ -58,13 +59,15 @@ export default function RootLayout({
   return (
 
     <html lang="en" className={spaceGrotesk.className}>
-      <body className=''>
-        <main className='flex min-w-fit h-full text-white justify-start bg-[#131313] relative' >
+      <body className=' bg-[#131313] h-full w-full'>
+        <main className='flex min-w-fit h-full text-white justify-start relative' >
           <MyProvider>
-            <button onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={` absolute text-xl left-5 medium:hidden p-2 bg-[#E58E27] rounded-full top-3 z-40 w-5`}><AiOutlineMenu /></button>
-            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  className={`${isOpen ? "left-0" : "left-[-80px]"} medium:left-0 absolute z-50 h-full w-10 medium:w-20 xLarge:w-32`}><Sidebar /></div>
-            <div className={`${isOpen ? "ml-9" : ""} medium:ml-16  w-full medium:h-screen xMedium:h-full`}>
-              {children}
+            <button onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={` cursor-pointer absolute text-xl left-5 medium:hidden p-2 bg-[#E58E27] rounded-full top-3 z-40 w-5 h-10`}><AiOutlineMenu /></button>
+            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  className={`${isOpen ? "left-0" : "left-[-80px]"} cursor-pointer medium:left-0 absolute z-50 h-screen w-10 medium:w-20 xLarge:w-32 `}><Sidebar /></div>
+            <div className={`w-full medium:ml-16   h-screen xMedium:h-full`}>
+            {React.Children.map(children, child => {
+ return React.cloneElement(child as React.ReactElement<any>, { isOpen });
+})}
             </div>
           </MyProvider>
         </main>
