@@ -3,10 +3,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import Sidebar from './components/Sidebar'
 import { Space_Grotesk } from 'next/font/google';
-import { Provider } from 'react-redux';
-import store from './store/store';
 import MyProvider from './store/provider';
-import { usePathname, redirect } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import NotFoud404 from './notFoud404/page';
 import { useState } from 'react';
 import { AiOutlineMenu } from "react-icons/ai";
