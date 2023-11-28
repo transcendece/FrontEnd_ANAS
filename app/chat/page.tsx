@@ -14,6 +14,10 @@ import { fetchChatData } from "../Slices/chatSlice";
 import { useCookies } from 'react-cookie';
 import { messages } from "../components/chatComp/messages";
 import { socket } from "../components/chatComp/socket";
+import { BiConversation } from "react-icons/bi";
+import { BiSolidMessageSquareEdit } from "react-icons/bi";
+
+
 import axios from "axios";
 
 export interface Message {
@@ -159,9 +163,11 @@ export default function chat() {
                   <ChatInput onSendMessage={handleSendMessage} conversation={sortedConversations.find((conversation) => conversation.id === selectConvId) as Conversation}/>
                 </div>)}
               </div>
-                <div className="xMedium:hidden mt-4">
-          <button onClick={() => setShowConversations(true)} className={`w-1/2 py-2 ${showConversations ? 'bg-[#E58E27] text-white' : 'hover:bg-[#cacaca] hover:bg-opacity-10 text-white'} transition duration-500 ease-in-out rounded-l-xl`}>Conversations</button>
-          <button onClick={() => setShowConversations(false)} className={`w-1/2 py-2 ${!showConversations ? 'bg-[#E58E27] text-white' : 'hover:bg-[#E58E27] hover:bg-opacity-10 text-white'} transition duration-500 ease-in-out rounded-r-xl`}>Content</button>
+                <div className="xMedium:hidden mt-4 w-full flex shadow-sm border border-[#E58E27] rounded-xl shadow-[#E58E27] ">
+          <button onClick={() => setShowConversations(true)} className={`w-1/2 py-2 ${showConversations ? 'bg-[#E58E27] text-white' : 'hover:bg-[#cacaca] hover:bg-opacity-10 text-white'} text-3xl  transition duration-500 flex ease-in-out rounded-l-xl`}><span className="text-center m-auto"><BiConversation /></span>
+</button>
+          <button onClick={() => setShowConversations(false)} className={`w-1/2 py-2 ${!showConversations ? 'bg-[#E58E27] text-white' : 'hover:bg-[#cacaca] hover:bg-opacity-10 text-white'} text-3xl  transition duration-500 flex ease-in-out rounded-r-xl`}><span className="text-center m-auto"><BiSolidMessageSquareEdit /></span>
+</button>
         </div>
             </div>
           </div>
