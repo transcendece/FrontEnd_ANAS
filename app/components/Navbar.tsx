@@ -54,7 +54,7 @@ export default function Navbar({pageName}:Props) {
         </div>
       </div>
       <div className='flex w-[40%] text-[#E58E27] justify-end items-center'>
-        <Link href={'/'}><h1 className={`${hideIt ? "hidden medium:block" : ""} text-[#E58E27] mr-2 md:mr-8 font-sans text-md font-bold flex-none Large:text-xl`}>AREA 420</h1></Link>
+        <Link href={'/'}><h1 className={`${hideIt ? "hidden medium:block" : ""} text-[#E58E27] mr-2 md:mr-8 font-sans medium:text-md font-bold flex-none Large:text-xl`}>AREA 420</h1></Link>
         <Link href={'/game'} className="medium:py-1 medium:px-6 Large:px-8 bg-[#E58E27] text-sm text-slate-100 rounded-full medium:rounded-sm flex-none Large:text-xl  ml-8">
           <div className='hidden medium:block'>PLAY</div>
           <div className='text-3xl rounded-full medium:hidden'><BsFillPlayCircleFill/></div>
