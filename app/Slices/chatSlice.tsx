@@ -19,8 +19,10 @@ export interface Conversation {
   messages: Message[];
 }
 
-const initialState:{entity:Conversation []} = {
+const initialState:{entity:Conversation []; loading: boolean; error: null | string } = {
   entity: [],
+  loading: false,
+  error: null,
 };
 
 
@@ -48,16 +50,16 @@ const chatSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchChatData.pending, (state) => {
-        // state.loading = true;
+        state.loading = true;
       })
       .addCase(fetchChatData.fulfilled, (state, action) => {
         // console.log('Chat data from server:', action.payload);
         state.entity = action.payload;
-        // state.loading = false;
+        state.loading = false
       })
       .addCase(fetchChatData.rejected, (state, action) => {
-        // state.loading = false;
-        // state.error = action.error.message || 'Something went wrong !';
+        state.loading = true;
+        state.error = action.error.message || 'Something went wrong !';
       });
   },
 });

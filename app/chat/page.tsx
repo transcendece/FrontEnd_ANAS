@@ -16,6 +16,7 @@ import { messages } from "../components/chatComp/messages";
 import { socket } from "../components/chatComp/socket";
 import { BiConversation } from "react-icons/bi";
 import { BiSolidMessageSquareEdit } from "react-icons/bi";
+import { PropagateLoader } from "react-spinners";
 
 
 import axios from "axios";
@@ -42,6 +43,7 @@ export interface Conversation {
 export default function chat() {
   const dispatch = useDispatch<AppDispatch>();
   const conversations: Conversation[] = useSelector((state: RootState) => state.chat?.entity);
+  const loading: boolean = useSelector((state: RootState) => state.chat?.loading);
   const [selectedConv, setSelectedConv] = useState<Conversation[]>(conversations);
   const [showConversations, setShowConversations] = useState(true);
   const [showContent, setShowContent] = useState(false);
@@ -129,6 +131,17 @@ export default function chat() {
     // setAllMessages((prevMessages) => [...prevMessages, newChatMessage]);
     }
   }
+  if (loading)
+    return (<>
+      <div className="text-white flex flex-col justify-center items-center w-full h-[90%]">
+        <div className="h-16 w-full Large:h-24"><Navbar pageName="chat"/></div>
+        <div className="m-auto text-2xl">
+          <div className="p-3 ">LOADING</div>
+          <div className="p-3 ml-9"><PropagateLoader color={"#E58E27"} loading={loading} size={20} aria-label="Loading Spinner"/></div>
+        </div>
+      </div>
+
+    </>)
 
   const sortedConversations = selectedConv.slice().sort((a, b) => {
     const timestampA = a.timestamp || 0;
