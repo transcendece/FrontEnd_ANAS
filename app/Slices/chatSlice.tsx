@@ -28,7 +28,7 @@ const initialState:{entity:Conversation []; loading: boolean; error: null | stri
 
 export const fetchChatData = createAsyncThunk("chat/fetch", async (thunkApi) => {
     try {
-        const response = await fetch("http://localhost:5000/Chat/user", {
+        const response = await fetch("http://localhost:4000/Chat/user", {
           method: "GET",
           credentials: 'include',
         });
@@ -58,7 +58,7 @@ const chatSlice = createSlice({
         state.loading = false
       })
       .addCase(fetchChatData.rejected, (state, action) => {
-        state.loading = true;
+        state.loading = false;
         state.error = action.error.message || 'Something went wrong !';
       });
   },

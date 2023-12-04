@@ -47,6 +47,7 @@ export default function chat() {
   const [selectedConv, setSelectedConv] = useState<Conversation[]>(conversations);
   const [showConversations, setShowConversations] = useState(true);
   const [showContent, setShowContent] = useState(false);
+  const [selectConvId, setSelectConvId] = useState<number>(0);
 
   useEffect(() => {
     // console.log("test")
@@ -96,7 +97,6 @@ export default function chat() {
   // const [allMessages, setAllMessages] = useState<Message[]>(selectedConv[0].messages);
 
   
-  const [selectConvId, setSelectConvId] = useState<number>(0);
   
   // console.log(allMessages);
   const handleSendMessage = (newMessage: string) => {
@@ -135,7 +135,7 @@ export default function chat() {
     return (<>
       <div className="text-white flex flex-col justify-center items-center w-full h-[90%]">
         <div className="h-16 w-full Large:h-24"><Navbar pageName="chat"/></div>
-        <div className="m-auto text-2xl">
+        <div className="m-auto text-xl">
           <div className="p-3 ">LOADING</div>
           <div className="p-3 ml-9"><PropagateLoader color={"#E58E27"} loading={loading} size={20} aria-label="Loading Spinner"/></div>
         </div>

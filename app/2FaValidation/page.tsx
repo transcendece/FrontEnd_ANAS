@@ -45,7 +45,7 @@ export default function TwoFactorValidation() {
     body.code = otpValues.join('');
     console.log("otp", body)
     
-    await axios.post('http://localhost:5000/2FA/validation', body, {withCredentials: true})
+    await axios.post('http://localhost:4000/2FA/validation', body, {withCredentials: true})
     .then(response => {
 
       if (response.status === 200)

@@ -14,7 +14,7 @@ export default function Sidebar() {
 
     const handlelogout = async () => {
 
-        await axios.post('http://localhost:5000/auth/logout', {} ,{withCredentials: true})
+        await axios.post('http://localhost:4000/auth/logout', {} ,{withCredentials: true})
         .then(response => {
 
             if (response.status === 200) {
